@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"github.com/makebeepboop/task-app/internal/domain/models"
+	"github.com/makebeepboop/task-app/internal/lib/sl"
 	"github.com/makebeepboop/task-app/internal/storage"
-	"github.com/makebeepboop/task-app/pkg/sl"
 	"log/slog"
 	"strconv"
 )
