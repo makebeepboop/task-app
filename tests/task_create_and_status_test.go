@@ -2,7 +2,7 @@ package tests
 
 import (
 	"github.com/brianvoe/gofakeit/v6"
-	taskgrpc "github.com/makebeepboop/protos/gen/go/task"
+	taskpb "github.com/makebeepboop/protos/gen/go/task"
 	"github.com/makebeepboop/task-app/tests/suite"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -16,7 +16,7 @@ func TestCreateTaskAndStatus(t *testing.T) {
 	flow := gofakeit.Bird()
 	number := gofakeit.Number(1, 1000)
 
-	respCreate, err := st.TaskClient.Create(ctx, &taskgrpc.CreateRequest{
+	respCreate, err := st.TaskClient.Create(ctx, &taskpb.CreateRequest{
 		Title:  title,
 		Flow:   flow,
 		Number: uint64(number),
@@ -24,7 +24,7 @@ func TestCreateTaskAndStatus(t *testing.T) {
 	require.NoError(t, err)
 	assert.NotEmpty(t, respCreate.GetTaskId())
 
-	respStatus, err := st.TaskClient.Status(ctx, &taskgrpc.StatusRequest{
+	respStatus, err := st.TaskClient.Status(ctx, &taskpb.StatusRequest{
 		TaskId: respCreate.GetTaskId(),
 	})
 	require.NoError(t, err)

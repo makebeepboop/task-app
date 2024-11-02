@@ -2,7 +2,7 @@ package suite
 
 import (
 	"context"
-	taskgrpc "github.com/makebeepboop/protos/gen/go/task"
+	taskpb "github.com/makebeepboop/protos/gen/go/task"
 	"github.com/makebeepboop/task-app/internal/config"
 	"net"
 	"os"
@@ -16,7 +16,7 @@ import (
 type Suite struct {
 	*testing.T
 	Cfg        *config.Config
-	TaskClient taskgrpc.TaskClient
+	TaskClient taskpb.TaskClient
 }
 
 const (
@@ -49,7 +49,7 @@ func New(t *testing.T) (context.Context, *Suite) {
 	return ctx, &Suite{
 		T:          t,
 		Cfg:        cfg,
-		TaskClient: taskgrpc.NewTaskClient(cc),
+		TaskClient: taskpb.NewTaskClient(cc),
 	}
 }
 
