@@ -16,7 +16,10 @@ func New(
 	grpcPort int,
 	storagePath string,
 ) *App {
-	storage, err := sqlite.New(storagePath)
+	storage, err := sqlite.New(
+		log,
+		storagePath,
+	)
 	if err != nil {
 		panic(err)
 	}
